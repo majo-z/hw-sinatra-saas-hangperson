@@ -68,7 +68,7 @@ As Chapter 2 of ESaaS explains, SaaS apps require a web server to receive HTTP r
 
 As Chapter 2 of *ESaaS* explains, a SaaS app essentially recognizes and responds to HTTP requests corresponding to the application's *routes* (recall that a route consists of an HTTP method such as `GET` or `POST` plus a URI).  Sinatra provides an extremely lightweight shorthand for matching a route with the app code to be executed when a request using that route arrives from the Web server.
 
-Create a file in your project called `app.rb` containing the following:
+Create a file in your project called `app.rb (app_part_0.rb)` containing the following:
 
 ```rb
 require 'sinatra'
@@ -96,11 +96,11 @@ As you see from the above simple example, Sinatra lets you write functions that 
 To run our app, we have to start the application server and presentation tier (web) server.  The `rack` application server is controlled by a file `config.ru`, which you must now create and add to version control, containing the following:
 
 ```rb
-require './app'
+require './app' # app_part_0
 run MyApp
 ```
 
-The first line tells Rack that our app lives in the file `app.rb`, which you created above to hold your app's code.  We have to explicitly state that our `app` file is located in the current directory (.) because `require` normally looks only in standard system directories to find gems.
+The first line tells Rack that our app lives in the file `app.rb (app_part_0.rb)`, which you created above to hold your app's code.  We have to explicitly state that our `app` file is located in the current directory (.) because `require` normally looks only in standard system directories to find gems.
 
 If you're using Cloud9, you're now ready to test-drive our simple app with this command line:
 
@@ -127,7 +127,7 @@ You should now have the following files under version control: `Gemfile`, `Gemfi
 Modify the app
 --------------
 
-Modify `app.rb` so that instead of "Hello World" it prints "Goodbye World". Save your changes to `app.rb` and try refreshing your browser tab where the app is running.  
+Modify `app.rb (app_part_0.rb)` so that instead of "Hello World" it prints "Goodbye World". Save your changes to `app.rb` and try refreshing your browser tab where the app is running.  
 
 No changes? Confused?
 
@@ -149,7 +149,9 @@ Say `bundle exec rerun -- rackup -p $PORT -o $IP` in the terminal window to star
 
 In this case we are prefixing with `bundle exec` again in order to ensure we are using the gems in the Gemfile.lock, and the `--` symbol is there to assert that the command we want rerun to operate with is `rackup -p $PORT -o $IP`.  We could achieve the same effect with `bundle exec rerun "rackup -p $PORT -o $IP"`.  They are equivalent.   More importantly any detected changes will now cause the server to restart automatically, similar to the use of `guard` to auto re-run specs when files change.
 
-Modify `app.rb` to print a different message, and verify that the change is detected by refreshing your browser tab with the running app.  Also before we move on you should commit your latest changes to git.
+Modify `app.rb (app_part_0.rb)` to print a different message, and verify that the change is detected by refreshing your browser tab with the running app.  Also before we move on you should commit your latest changes to git.
+
+#### If you want to create and run Part 0 in this repository, you can skip all above steps, because Gemfile is already configured, but you have to use different name such as `app_part_0.rb`, because app.rb already exists in the repository and is used for Part 1 onward. You also have to change configuration in `config.ru` (open the file and follow the instructions)...rerun is also configured in Gemfile so you can start the application by using `bundle exec rerun -- rackup -p $PORT -o $IP`.
 
 Deploy to Heroku
 ----------------
@@ -201,7 +203,7 @@ Summary
 
 * You started a new application project by creating a `Gemfile` specifying which gems you need and running `bundle` to verify that they're available and create the `Gemfile.lock` file that records the versions of gems actually in use.
 
-* You created a Sinatra app in the file `app.rb`, pointed Rack at this file in `config.ru`, and used `rackup` to start the appserver and the WEBrick web server.
+* You created a Sinatra app in the file `app.rb (app_part_0.rb)`, pointed Rack at this file in `config.ru`, and used `rackup` to start the appserver and the WEBrick web server.
 
 * You learned that changing the app's code doesn't automatically cause Rack to reload the app. To save the work of restarting the app manually every time you make a change, you used the `rerun` gem, adding it to the Gemfile in a way that specifies you won't need it in production, only during development.
 
