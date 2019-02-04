@@ -152,13 +152,13 @@ end
 
 Any gem specifications inside the `group :development` block will only be examined if bundle is run in the development environment.  (The other environments you can specify are :test and :production, and you can define new environments yourself.)  Gem specifications outside of any group block are assumed to apply in all environments.
 
-Say `bundle exec rerun -- rackup -p $PORT -o $IP` in the terminal window to start your app and verify the app is running.  There are more details on rerun's usage available in the gem's [GitHub README](https://github.com/alexch/rerun#usage). Gem's are usually on GitHub and their README's full of helpful instructions about how to use them.
+Say `bundle exec rerun -- rackup` (`bundle exec rerun -- rackup -p $PORT -o $IP`, if you're using Cloud9) in the terminal window to start your app and verify the app is running.  There are more details on rerun's usage available in the gem's [GitHub README](https://github.com/alexch/rerun#usage). Gem's are usually on GitHub and their README's full of helpful instructions about how to use them.
 
 In this case we are prefixing with `bundle exec` again in order to ensure we are using the gems in the Gemfile.lock, and the `--` symbol is there to assert that the command we want rerun to operate with is `rackup -p $PORT -o $IP`.  We could achieve the same effect with `bundle exec rerun "rackup -p $PORT -o $IP"`.  They are equivalent.   More importantly any detected changes will now cause the server to restart automatically, similar to the use of `guard` to auto re-run specs when files change.
 
 Modify `app.rb (app_part_0.rb)` to print a different message, and verify that the change is detected by refreshing your browser tab with the running app.  Also before we move on you should commit your latest changes to git.
 
-#### If you want to create and run Part 0 in this repository, you can skip all above steps, because Gemfile is already configured, but you have to use different name such as `app_part_0.rb`, because app.rb already exists in the repository and is used for Part 1 onward. You also have to change configuration in `config.ru` (open the file and follow the instructions)...rerun is also configured in Gemfile so you can start the application by using `bundle exec rerun -- rackup -p $PORT -o $IP`.
+#### If you want to create and run Part 0 in this repository, you can skip all above steps, because Gemfile is already configured, but you have to use different name such as `app_part_0.rb`, because app.rb already exists in the repository and is used for Part 1 onward. You also have to change configuration in `config.ru` (open the file and follow the instructions)...rerun is also configured in Gemfile so you can start the application by using `bundle exec rerun -- rackup` (`bundle exec rerun -- rackup -p $PORT -o $IP`, if you're using Cloud9).
 
 Deploy to Heroku
 ----------------
