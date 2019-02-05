@@ -5,13 +5,17 @@ class HangpersonGame
 
   # Get a word from remote "random word" service
 
-  # def initialize()
-  # end
-  
+  # define getters & setters
+  attr_accessor :word, :guesses, :wrong_guesses
+
+  #initialize object
   def initialize(word)
     @word = word
+    @guesses = ""
+    @wrong_guesses = ""
   end
 
+  
   # You can test it by running $ bundle exec irb -I. -r app.rb
   # And then in the irb: irb(main):001:0> HangpersonGame.get_random_word
   #  => "cooking"   <-- some random word
