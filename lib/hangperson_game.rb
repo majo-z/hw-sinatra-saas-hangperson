@@ -18,11 +18,17 @@ class HangpersonGame
   # instance methods of the game class
 
   def guess(letter)
-    if @word.include? letter
-      @guesses << letter
+
+    # check if a letter has already been guessed
+    if (@guesses.include? letter.downcase) || (@wrong_guesses.include? letter.downcase)
+      return false
     else
-     @wrong_guesses << letter
-    end
+      if @word.include? letter
+        @guesses << letter
+      else
+       @wrong_guesses << letter
+      end  
+    end 
   end
 
   def check_win_or_lose
