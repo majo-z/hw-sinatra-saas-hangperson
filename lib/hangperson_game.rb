@@ -18,18 +18,24 @@ class HangpersonGame
   # instance methods of the game class
 
   def guess(letter)
+    # disable case-sensitivity
+    letter.downcase!
+
+    # raise ArgumentError when not a letter, empty, or nil
+    raise ArgumentError if letter.nil? || letter.empty? || (letter =~ /[[^a-zA-Z]]/ ) # alphabetic characters, or /[[^alpha]]/
+     
 
     # check if a letter has already been guessed
-    if (@guesses.include? letter.downcase) || (@wrong_guesses.include? letter.downcase)
-      return false
+    if (@guesses.include? letter) || (@wrong_guesses.include? letter)
+      return false 
     else
       if @word.include? letter
         @guesses << letter
       else
-       @wrong_guesses << letter
-      end  
+        @wrong_guesses << letter
+      end
     end 
-  end
+  end # def guess
 
   def check_win_or_lose
   end
