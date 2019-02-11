@@ -77,7 +77,7 @@ describe HangpersonGame do
       it 'throws an error when empty' do
         expect { @game.guess('') }.to raise_error(ArgumentError)
       end
-      it 'throws an error when not a letter'  do
+      it 'throws an error when not a letter' do
         expect { @game.guess('%') }.to raise_error(ArgumentError)
       end
       it 'throws an error when nil' do

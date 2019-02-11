@@ -11,20 +11,22 @@ class HangpersonGame
   #initialize object
   def initialize(word)
     @word = word
-    @guesses = ""
-    @wrong_guesses = ""
+    @guesses = ''
+    @wrong_guesses = ''
   end
 
   # instance methods of the game class
 
   def guess(letter)
     # disable case-sensitivity
-    letter.downcase!
+    
 
+    # alphabetic characters, or /[[^alpha]]/
     # raise ArgumentError when not a letter, empty, or nil
-    raise ArgumentError if letter.nil? || letter.empty? || (letter =~ /[[^a-zA-Z]]/ ) # alphabetic characters, or /[[^alpha]]/
-     
+    raise ArgumentError if (letter.empty? || letter.nil? || letter =~ /[[^a-zA-Z]]/)
 
+    letter.downcase!
+     
     # check if a letter has already been guessed
     if (@guesses.include? letter) || (@wrong_guesses.include? letter)
       return false 
@@ -41,8 +43,17 @@ class HangpersonGame
   end
 
   def word_with_guesses
+    banana = ''
+    @word.split('').each do |letter|
+      if(@guesses.include? letter)
+        banana << letter
+      else
+        banana << '-'
+      end
+    end
+    return banana
   end
-  
+
   # You can test it by running $ bundle exec irb -I. -r app.rb
   # And then in the irb: irb(main):001:0> HangpersonGame.get_random_word
   #  => "cooking"   <-- some random word
@@ -54,5 +65,7 @@ class HangpersonGame
       return http.post(uri, "").body
     }
   end
+
+  
 
 end
