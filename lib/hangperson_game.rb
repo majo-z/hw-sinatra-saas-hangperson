@@ -48,7 +48,7 @@ class HangpersonGame
     chars = ''
     @word.split('').each do |letter| # @word.each_char do |letter|
       if(@guesses.include? letter)
-        chars << letter # banana += letter
+        chars << letter # chars += letter
       else
         chars << '-'
       end
