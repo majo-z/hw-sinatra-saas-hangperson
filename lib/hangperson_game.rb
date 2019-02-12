@@ -1,10 +1,5 @@
 class HangpersonGame
 
-  # add the necessary class methods, attributes, etc. here
-  # to make the tests in spec/hangperson_game_spec.rb pass.
-
-  # Get a word from remote "random word" service
-
   # define getters & setters
   attr_accessor :word, :guesses, :wrong_guesses
 
@@ -18,17 +13,17 @@ class HangpersonGame
   # instance methods of the game class
 
   def guess(letter)
-    # disable case-sensitivity
-    
-
-    # alphabetic characters, or /[[^alpha]]/
     # raise ArgumentError when not a letter, empty, or nil
-    raise ArgumentError if (letter.empty? || letter.nil? || letter =~ /[[^a-zA-Z]]/)
+    raise ArgumentError if (letter.to_s == '') || 
+    (letter.nil?) || 
+    (letter =~ /[[^a-zA-Z]]/) # alphabetic characters, or /[[^alpha]]/
 
+    # disable case-sensitivity
     letter.downcase!
-     
+    
     # check if a letter has already been guessed
-    if (@guesses.include? letter) || (@wrong_guesses.include? letter)
+    if (@guesses.include? letter) || 
+      (@wrong_guesses.include? letter)
       return false 
     else
       if @word.include? letter
@@ -40,18 +35,25 @@ class HangpersonGame
   end # def guess
 
   def check_win_or_lose
+    if self.word_with_guesses == @word
+      return :win
+    elsif @wrong_guesses.length == 7
+      return :lose
+    else
+      return :play
+    end
   end
 
   def word_with_guesses
-    banana = ''
-    @word.split('').each do |letter|
+    chars = ''
+    @word.split('').each do |letter| # @word.each_char do |letter|
       if(@guesses.include? letter)
-        banana << letter
+        chars << letter # banana += letter
       else
-        banana << '-'
+        chars << '-'
       end
     end
-    return banana
+    return chars
   end
 
   # You can test it by running $ bundle exec irb -I. -r app.rb
@@ -66,6 +68,4 @@ class HangpersonGame
     }
   end
 
-  
-
-end
+end #class HangpersonGame
