@@ -22,7 +22,9 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/new' do
-    erb :new # located in views/new.erb
+    erb :new # located in views/new.erb, 
+             # from there post form with action="/create" is redirected 
+             # to show page according to post '/create' code below (line 30 to 37)
   end
   
   post '/create' do
