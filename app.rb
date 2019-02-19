@@ -67,24 +67,24 @@ class HangpersonApp < Sinatra::Base
     elsif @game.check_win_or_lose == :lose
       redirect '/lose'
     else
-      erb :show # You may change/remove this line
+      erb :show
     end
   end
   
   get '/win' do
     if @game.check_win_or_lose == :win
-      erb :win # You may change/remove this line
-    else
-      redirect '/show'
+      erb :win
+    else # prevent typing win to address bar
+      redirect '/show' 
     end
   end
   
   get '/lose' do
     if @game.check_win_or_lose == :lose
-      erb :lose # You may change/remove this line
-    else
-      redirect '/show'
+      erb :lose
+    else # prevent typing lose to address bar
+      redirect '/show' 
     end
   end
-  
+
 end # class HangpersonApp
