@@ -77,7 +77,7 @@ class HangpersonApp < Sinatra::Base
     else # prevent typing win to address bar
       # redirect '/'
       # erb :lose 
-      # redirect '/show'
+      redirect '/show'
     end
   end
   
