@@ -74,10 +74,10 @@ class HangpersonApp < Sinatra::Base
   get '/win' do
     if @game.check_win_or_lose == :win
       erb :win
-    else # prevent typing win to address bar, if tempered with, the player looses the game
+    else # prevent typing win to address bar
       # redirect '/'
+      # erb :lose 
       # redirect '/show'
-      erb :lose 
     end
   end
   
@@ -86,8 +86,8 @@ class HangpersonApp < Sinatra::Base
       erb :lose
     else # prevent typing lose to address bar
       # redirect '/' 
-      # redirect '/show'
-      erb :new
+      # erb :new
+      redirect '/show'
     end
   end
 
